@@ -100,6 +100,14 @@ RUN apt-get update -y && \
     \
     curl -L -o /usr/local/bin/amm https://git.io/vASZm && \
     chmod +x /usr/local/bin/amm && \
+    \
+    DOCKER_VERSION="docker-17.09.0-ce" && \
+    wget https://download.docker.com/linux/static/stable/x86_64/$DOCKER_VERSION.tgz && \
+    tar -xvf $DOCKER_VERSION.tgz --strip-components 1 docker/docker && \
+    rm -rf $DOCKER_VERSION.tgz && \
+    mv docker /usr/bin/docker && \
+    chmod +x /usr/bin/docker && \
+    \
     apt-get remove -y autoconf bison build-essential && \
     apt-get autoremove -y && \
     apt-get autoclean all && \
